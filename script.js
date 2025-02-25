@@ -2,17 +2,15 @@
 function newBubble() {
     let RandomNumGenerator = "";
 
-    // Creating 60 bubbles with random numbers between 0-9
     for (let i = 1; i <= 60; i++) {
         let RandomN = Math.floor(Math.random() * 10);
         RandomNumGenerator += `<div class="bubble">${RandomN}</div>`;
     }
 
-    // Updating the game board with newly generated bubbles
     document.querySelector("#content-mid").innerHTML = RandomNumGenerator;
 }
 
-// Variable to store the number that needs to be hit
+// Variable to store the target number
 let hit = 0;
 
 // Function to generate a new target number
@@ -21,18 +19,20 @@ function newHit() {
     document.querySelector("#newHit").textContent = hit;
 }
 
-// Timer variable and gameOver flag
+// Timer variables
 let timer = 60;
-let gameOver = false; // Flag to track if the game has ended
+let gameOver = false;
+let TimerVal; // Store timer interval
 
-// Function to start and update the countdown timer
+// Function to start the countdown timer
 function runTimer() {
-    let TimerVal = setInterval(function () {
-        if (timer > 0 && !gameOver) { // Check if the game is still running
+    clearInterval(TimerVal); // Clear any previous timer to prevent speedup
+    TimerVal = setInterval(function () {
+        if (timer > 0 && !gameOver) {
             timer--;
             document.querySelector("#Timer").textContent = timer;
         } else {
-            clearInterval(TimerVal); // Stop the timer
+            clearInterval(TimerVal);
             if (!gameOver) {
                 document.querySelector("#content-mid").innerHTML = `<h1>GAME OVER</h1>`;
             }
@@ -52,6 +52,7 @@ function UpdateScore() {
 // Function to handle game over scenario
 function GameOver() {
     gameOver = true; // Set game over flag to true
+    clearInterval(TimerVal); // Stop the timer
     document.querySelector("#content-mid").innerHTML = `<h1>GAME OVER</h1> 
     <h2>You Clicked Wrong Number</h2>`;
 }
@@ -59,7 +60,7 @@ function GameOver() {
 // Event listener to check for bubble clicks
 document.querySelector("#content-mid").addEventListener("click", function (num) {
     let ClickedNum = Number(num.target.textContent);
-    
+
     if (!gameOver) { // Allow clicks only if the game is still running
         if (hit === ClickedNum) {
             UpdateScore(); // Increase score
@@ -71,7 +72,7 @@ document.querySelector("#content-mid").addEventListener("click", function (num) 
     }
 });
 
-// Add event listener to restart button
+// Restart Button Click Event
 document.querySelector("#button").addEventListener("click", restartGame);
 
 // Function to restart the game
@@ -91,7 +92,7 @@ function restartGame() {
     runTimer();
 }
 
-// Initializing the game
+// Initialize the game
 newBubble();
 newHit();
 runTimer();

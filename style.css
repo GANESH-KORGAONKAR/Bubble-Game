@@ -1,40 +1,48 @@
+/* Reset and Base Styles */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
     height: 100%;
     width: 100%;
+    font-family: Arial, sans-serif;
 }
 
+/* Main Container */
 #container {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     background-color: #FAEDCD;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px;
 }
 
 #content {
-    height: 80%;
-    width: 80%;
+    width: 90%;
+    max-width: 800px;
+    height: 85vh;
     background-color: #FEFAE0;
     border-radius: 15px;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
+/* Top Section - Scoreboard */
 #content-top {
     height: 13%;
     width: 100%;
     background-color: #D4A373;
-    padding: 00 20%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 10px;
 }
 
 .elements {
@@ -44,56 +52,48 @@ body {
 }
 
 .elements h2 {
-    padding: 7px;
+    padding: 5px;
     color: #FEFAE0;
-    font-size: 55px;
+    font-size: 1.8rem;
 }
 
 .box {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 60px;
-    width: 60px;
-    font-size: 35px;
+    height: 50px;
+    width: 50px;
+    font-size: 1.5rem;
     font-weight: 700;
     background-color: #FEFAE0;
     color: #b76a1d;
     border-radius: 5px;
 }
 
-
+/* Middle Section - Bubble Area */
 #content-mid {
-    height: 80%;
+    flex: 1;
     display: flex;
-    align-content: center;
     flex-wrap: wrap;
+    align-content: center;
     justify-content: center;
-}
-
-#content-mid h1 {
-    font-size: 200px;
-    color: #b76a1d;
-}
-
-#content-mid h2 {
-    font-size: 100px;
-    color: #987553;
+    padding: 15px;
+    overflow-y: auto;  /* Allows scrolling if needed */
 }
 
 .bubble {
-    height: 10vh;
-    width: 10vh;
+    height: 8vh;
+    width: 8vh;
     border-radius: 50%;
     background-color: #D4A373;
     color: #FEFAE0;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    margin: 9px 10.4px;
+    margin: 8px;
     font-weight: 900;
-    font-size: 40px;
+    font-size: 2rem;
+    transition: background 0.3s ease-in-out;
 }
 
 .bubble:hover {
@@ -101,27 +101,95 @@ body {
     cursor: pointer;
 }
 
+/* Bottom Section - Restart Button */
 #content-bottom {
-    height: 7%;
+    height: 10%;
     display: flex;
     align-content: center;
     justify-content: center;
 }
 
 #button {
-    width: 30%;
+    width: 50%;
     height: 90%;
     background-color: #D4A373;
     color: #FEFAE0;
     border: none;
     outline: none;
     border-radius: 10px;
-    font-size: 30px;
+    font-size: 1.5rem;
     font-weight: 600;
-    letter-spacing: 10px;
+    letter-spacing: 3px;
+    transition: background 0.3s ease-in-out;
+    position: relative; /* Ensure it stays visible */
 }
 
 #button:hover {
     background-color: #987553;
     cursor: pointer;
+}
+
+/* ---------------- RESPONSIVE DESIGN ---------------- */
+
+/* Tablets */
+@media (max-width: 768px) {
+    .elements h2 {
+        font-size: 1.5rem;
+    }
+
+    .box {
+        height: 40px;
+        width: 40px;
+        font-size: 1.2rem;
+    }
+
+    .bubble {
+        height: 7vh;
+        width: 7vh;
+        font-size: 1.5rem;
+    }
+
+    #button {
+        font-size: 1.3rem;
+        width: 60%;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+    #content {
+        width: 95%;
+        height: 85vh;
+    }
+
+    #content-top {
+        flex-direction: column;
+        height: 11%;
+        padding: 10px;
+    }
+
+    .elements {
+        margin-bottom: 5px;
+    }
+
+    .elements h2 {
+        font-size: 1.2rem;
+    }
+
+    .box {
+        height: 35px;
+        width: 35px;
+        font-size: 1rem;
+    }
+
+    .bubble {
+        height: 6vh;
+        width: 6vh;
+        font-size: 1.3rem;
+    }
+
+    #button {
+        font-size: 1.2rem;
+        width: 70%;
+    }
 }

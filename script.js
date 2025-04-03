@@ -1,8 +1,19 @@
 // Function to generate new bubbles with random numbers
 function newBubble() {
     let RandomNumGenerator = "";
+    let numBubbles;
 
-    for (let i = 1; i <= 60; i++) {
+    // Adjust the number of bubbles based on screen size
+    if (window.innerWidth > 1024) {
+        numBubbles = 48; // Desktop
+    } else if (window.innerWidth > 768) {
+        numBubbles = 36; // Tablet
+    } else {
+        numBubbles = 32; // Mobile
+    }
+
+
+    for (let i = 1; i <= numBubbles; i++) {
         let RandomN = Math.floor(Math.random() * 10);
         RandomNumGenerator += `<div class="bubble">${RandomN}</div>`;
     }
